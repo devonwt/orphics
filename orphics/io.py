@@ -23,6 +23,12 @@ def nostdout():
     yield
     sys.stdout = save_stdout
 
+@contextlib.contextmanager
+def nostderr():
+    save_stderr = sys.stderr
+    sys.stderr = DummyFile()
+    yield
+    sys.stderr = save_stderr
 
 @contextlib.contextmanager
 def no_context():
